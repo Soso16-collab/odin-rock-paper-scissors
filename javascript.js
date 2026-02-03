@@ -14,7 +14,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, or Scissors? (PRESS F12 TO VIEW THE CONSOLE)")
+    let humanChoice = prompt("Rock, Paper, or Scissors? (PRESS CTRL+SHIFT+J TO VIEW THE CONSOLE)")
     return humanChoice
 }
 
