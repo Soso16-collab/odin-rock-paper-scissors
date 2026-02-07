@@ -1,4 +1,5 @@
-playGame()
+let humanScore = 0
+let computerScore = 0
 
 function getComputerChoice() {
     let computerChoice = Math.random()
@@ -14,59 +15,92 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, or Scissors? (PRESS CTRL+SHIFT+J TO VIEW THE CONSOLE)")
+    let humanChoice = prompt("Rock, Paper, or Scissors?")
     return humanChoice
 }
 
 function playRound(humanChoice, computerChoice) {
-    if (humanChoice === null || humanChoice === undefined) { // This will occur if the user presses "cancel" on the prompt.
-        return "CANCEL GAME"
-    }
-    humanChoice = humanChoice.toUpperCase() 
     // Tie
     if (humanChoice === computerChoice) {
-        console.log(`You tie! ${humanChoice} is equal to ${computerChoice}`)
-        return "ROUND TIED"
+        displayResults(`You tie! ${humanChoice} is equal to ${computerChoice}`)
     }
     // Win
     else if (
         humanChoice === "ROCK" && computerChoice === "SCISSORS" || 
         humanChoice === "PAPER" && computerChoice === "ROCK" || 
         humanChoice === "SCISSORS" && computerChoice === "PAPER") {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`)
-        return "HUMAN WON"
+        displayResults(`You win! ${humanChoice} beats ${computerChoice}`)
+        addScoreAndDisplay("HUMAN")
     }
     // Lost
     else if (
         humanChoice === "ROCK" && computerChoice === "PAPER" || 
         humanChoice === "PAPER" && computerChoice === "SCISSORS" || 
         humanChoice === "SCISSORS" && computerChoice === "ROCK") {
-        console.log(`You lost! ${computerChoice} beats ${humanChoice}`)
-        return "COMPUTER WON"
+        displayResults(`You lost! ${computerChoice} beats ${humanChoice}`)
+        addScoreAndDisplay("COMPUTER")
+    }
+    if (humanScore === 5 || computerScore === 5) {
+        endGame()
     }
 }
 
-function playGame() {
-let humanScore = 0
-let computerScore = 0
-for (let i = 0; i < 5; i++) {
-    let roundResult = playRound(getHumanChoice(), getComputerChoice()) 
-    if (roundResult === "HUMAN WON") {
-    humanScore++
+function endGame() {
+    displayResults(`You have ${
+        humanScore > computerScore
+            ? "won"
+            : "lost"
+    } the game by a score of ${humanScore} to ${computerScore}${
+        humanScore > computerScore
+        ? "! Congratulations!"
+        : ". Good luck next time."
+    }`)
+    humanScore = 0
+    computerScore = 0
+    humanScoreDisplay.textContent = 0
+    computerScoreDisplay.textContent = 0
+    /*change computerchoice beats humanchoice to humanchoice is beaten by computerchoice
+    */
 }
-    else if (roundResult === "COMPUTER WON") {
-    computerScore++
-}
-    else if (roundResult === "CANCEL GAME") {
-        return
+
+const playerButtons = document.querySelector("#player-buttons")
+const rockButton = document.querySelector("#rock")
+const paperButton = document.querySelector("#paper")
+const scissorsButton = document.querySelector("#scissors")
+const resultsBox = document.querySelector("#results")
+const humanScoreDisplay = document.querySelector("#human-score-value")
+const computerScoreDisplay = document.querySelector("#computer-score-value")
+
+playerButtons.addEventListener("click", (event) => {
+    let target = event.target
+    
+    switch (target.id) {
+        case "rock":
+            playRound("ROCK", getComputerChoice())
+            break
+        case "paper":
+            playRound("PAPER", getComputerChoice())
+            break
+        case "scissors":
+            playRound("SCISSORS", getComputerChoice())
+            break
     }
-console.log(`Your score is ${humanScore}. The computer's score is ${computerScore}.`)
+})
+
+function displayResults(message) {
+    resultsPara.textContent = message
 }
-console.log(`You have ${
-    humanScore > computerScore
-    ? "won"
-    : humanScore < computerScore
-    ? "lost"
-    : "tied"
-    } the game by a score of ${humanScore} to ${computerScore}!`)
+
+function addScoreAndDisplay(scoreRecipient) {
+    if (scoreRecipient === "HUMAN") {
+        humanScore++
+        humanScoreDisplay.textContent = humanScore
+    }
+    else if (scoreRecipient === "COMPUTER") {
+        computerScore++
+        computerScoreDisplay.textContent = computerScore
+    }
 }
+
+
+
