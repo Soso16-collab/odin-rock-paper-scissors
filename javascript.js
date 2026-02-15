@@ -4,19 +4,17 @@ let computerScore = 0
 function getComputerChoice() {
     let computerChoice = Math.random()
     if (computerChoice < 1/3) {
+        computerButton.textContent = "✊"
         return "ROCK"
     }
     else if (computerChoice < 2/3) {
+        computerButton.textContent = "🖐️"
         return "PAPER"
     }
     else {
+        computerButton.textContent = "✌️"
         return "SCISSORS"
     }
-}
-
-function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, or Scissors?")
-    return humanChoice
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -59,8 +57,6 @@ function endGame() {
     computerScore = 0
     humanScoreDisplay.textContent = 0
     computerScoreDisplay.textContent = 0
-    /*change computerchoice beats humanchoice to humanchoice is beaten by computerchoice
-    */
 }
 
 const playerButtons = document.querySelector("#player-buttons")
@@ -68,20 +64,26 @@ const rockButton = document.querySelector("#rock")
 const paperButton = document.querySelector("#paper")
 const scissorsButton = document.querySelector("#scissors")
 const resultsBox = document.querySelector("#results")
+const resultsPara = document.querySelector("#results-para")
 const humanScoreDisplay = document.querySelector("#human-score-value")
 const computerScoreDisplay = document.querySelector("#computer-score-value")
+const humanButton = document.querySelector("#human-choice")
+const computerButton = document.querySelector("#computer-choice")
 
 playerButtons.addEventListener("click", (event) => {
     let target = event.target
-    
+
     switch (target.id) {
         case "rock":
+            humanButton.textContent = "✊"
             playRound("ROCK", getComputerChoice())
             break
         case "paper":
+            humanButton.textContent = "🖐️"
             playRound("PAPER", getComputerChoice())
             break
         case "scissors":
+            humanButton.textContent = "✌️"
             playRound("SCISSORS", getComputerChoice())
             break
     }

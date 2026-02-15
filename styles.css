@@ -1,16 +1,78 @@
 body {
     display: flex;
     flex-flow: column;
-    align-items: center;
+    min-height: 100vh;  
+    margin: 0;
+    background-color: #0f172a;
+    font-family: "Inter", sans-serif;
 }
+
 #header {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
     width: 100%;
-    background-color: gold; /* find a better color */
+    background-color: #020617;
+    color: #e5e7eb;
 }
-#title {
-    /* add unique font and color */    
+
+#main-content {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+#player-status {
+    display: flex;
+    justify-content: space-between;
+    width: 308px;
+    height: 136.8px;
+}
+
+#human-column {
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: rgb(224, 26, 26);
+}
+
+#human-choice,
+#computer-choice {
+    font-size: 80px;
+    text-align: center;
+}
+
+#human-score,
+#computer-score {
+    background-color: rgb(7, 239, 196);
+    text-align: center;
+    width: 100px;
+}
+
+#computer-column {
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: rgb(6, 36, 203);
+}
+
+#results {
+    margin: 10px;
+}
+
+/* designate sizes to humanscore and computerscore so size is equal */
+
+#results-para {
+    color: white;
+    font-weight: bold;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    font-size: 80px;
+    padding: 0px;
+    background-color: #38bdf8;
+    border: 0px;
 }

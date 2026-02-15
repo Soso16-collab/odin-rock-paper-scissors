@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="header">
         <h1 id="title">Rock Paper Scissors</h1>
     </div>
-    <div id="player-buttons">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
-    </div>
-    <div id="results">
-        <p id="resultsPara"></p>
-    </div>
-    <div id="score">
-        <div>Human Score: <span id="human-score-value">0</span></div>
-        <div>Computer Score: <span id="computer-score-value">0</span></div>
+    <div id="main-content">
+        <div id="player-status">
+            <span id="human-column">
+                <span id="human-choice">❓</span>
+                <span id="human-score">Human Score: <span id="human-score-value">0</span></span>
+            </span>
+            <span id="computer-column">
+                <span id="computer-choice">❓</span>
+                <span id="computer-score">Computer Score: <span id="computer-score-value">0</span></span>
+            </span>
+        </div>
+        <div id="results">
+            <p id="results-para">Click one of the signs to start the game!</p>
+        </div>
+        <div id="player-buttons">
+            <button id="rock">✊</button>
+            <button id="paper">🖐️</button>
+            <button id="scissors">✌️</button>
+        </div>
     </div>
 
     <script src="javascript.js"></script>
